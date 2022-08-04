@@ -8,6 +8,7 @@ import { PageTitle } from './PageTitle';
 import { registerCustomEventType, EventTypeOptions } from './Rendering/Events/EventTypes';
 import { HubConnection } from '@microsoft/signalr';
 import { InputFile } from './InputFile';
+import { setImage } from './Image';
 import { NavigationLock } from './NavigationLock';
 import { DefaultReconnectionHandler } from './Platform/Circuits/DefaultReconnectionHandler';
 import { CircuitStartOptions } from './Platform/Circuits/CircuitStartOptions';
@@ -63,6 +64,7 @@ interface IBlazor {
     getJSDataStreamChunk?: (data: any, position: number, chunkSize: number) => Promise<Uint8Array>,
     receiveDotNetDataStream?: (streamId: number, data: any, bytesRead: number, errorMessage: string) => void,
     attachWebRendererInterop?: typeof attachWebRendererInterop,
+    setImage?: (data: any, imageId: string) => Promise<void>,
 
     // APIs invoked by hot reload
     applyHotReload?: (id: string, metadataDelta: string, ilDelta: string, pdbDelta: string | undefined) => void,
@@ -85,6 +87,7 @@ export const Blazor: IBlazor = {
     getJSDataStreamChunk: getNextChunk,
     receiveDotNetDataStream: receiveDotNetDataStream,
     attachWebRendererInterop,
+    setImage: setImage,
   },
 };
 
